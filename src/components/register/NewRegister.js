@@ -11,7 +11,7 @@ export default class NewRegister extends Component {
     cpf: '',
     codigoCliente: '',
     nomeFantasia: '',
-    rota: '',
+    rota: [],
     canal: '',
     nomeContato: '',
     telefone: '',
@@ -25,9 +25,15 @@ export default class NewRegister extends Component {
   }
 
   handleChange = (e) => {
-    this.setState({
-      [e.target.id]: e.target.value
-    })
+    if (e.target.id === 'rota') {
+      this.setState({
+        [e.target.id]: [e.target.value]
+      })
+    } else {
+      this.setState({
+        [e.target.id]: e.target.value
+      })
+    }
   }
   
   form = <Register handleChange={this.handleChange} />

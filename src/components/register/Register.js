@@ -13,6 +13,28 @@ export default function Register(props) {
           <label htmlFor="nomeFantasia">Nome Fantasia</label>
           <input type="text" id="nomeFantasia" />
         </div>
+        <label htmlFor="rota">Rota</label>
+        <div className="input-field col s12">
+          <select id="rota" className="browser-default" multiple defaultValue={["Segunda"]}>
+            <option>Segunda</option>
+            <option>Terça</option>
+            <option>Quarta</option>
+            <option>Quinta</option>
+            <option>Sexta</option>
+            <option>Sábado</option>
+          </select>
+        </div>
+        <label htmlFor="canal">Canal</label>
+        <div className="input-field col s12">
+          <select id="canal" className="browser-default" defaultValue="Bar A/B">
+            <option>Bar A/B</option>
+            <option>Bar C/D</option>
+            <option>Choperia</option>
+            <option>Restaurante</option>
+            <option>Depósito de Bebidas</option>
+            <option>Supermercado</option>
+          </select>
+        </div>
         <div className="input-field">
           <label htmlFor="nomeContato">Nome de Contato</label>
           <input type="text" id="nomeContato" />
