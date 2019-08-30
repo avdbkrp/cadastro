@@ -26,8 +26,16 @@ export default class NewRegister extends Component {
 
   handleChange = (e) => {
     if (e.target.id === 'rota') {
+        var options = e.target.options;
+        var value = [];
+        for (var i = 0, l = options.length; i < l; i++) {
+          if (options[i].selected) {
+            value.push(options[i].value);
+          }
+        }
+      
       this.setState({
-        [e.target.id]: [e.target.value]
+        [e.target.id]: value
       })
     } else {
       this.setState({
