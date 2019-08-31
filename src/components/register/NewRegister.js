@@ -29,7 +29,7 @@ export default class NewRegister extends Component {
         var options = e.target.options;
         var value = [];
         for (var i = 0, l = options.length; i < l; i++) {
-          if (options[i].selected) {
+          if (options[i].selected && options[i].value !== '') {
             value.push(options[i].value);
           }
         }

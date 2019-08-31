@@ -4,7 +4,7 @@ export default function Register(props) {
   const { handleChange } = props
 
   return (
-    <div className="container" onChange={handleChange}>
+    <div onChange={handleChange}>
         <div className="input-field">
           <label htmlFor="cnpj">CNPJ</label>
           <input type="text" id="cnpj" />
@@ -15,7 +15,8 @@ export default function Register(props) {
         </div>
         <label htmlFor="rota">Rota</label>
         <div className="input-field col s12">
-          <select id="rota" className="browser-default" multiple defaultValue={["Segunda"]}>
+          <select id="rota" className="browser-default" multiple defaultValue={[""]}>
+            <option value="" disabled>Selecione a rota</option>
             <option>Segunda</option>
             <option>Terça</option>
             <option>Quarta</option>
@@ -26,7 +27,8 @@ export default function Register(props) {
         </div>
         <label htmlFor="canal">Canal</label>
         <div className="input-field col s12">
-          <select id="canal" className="browser-default" defaultValue="Bar A/B">
+          <select id="canal" className="browser-default" defaultValue="">
+            <option value="" disabled>Selecione o canal</option>
             <option>Bar A/B</option>
             <option>Bar C/D</option>
             <option>Choperia</option>
