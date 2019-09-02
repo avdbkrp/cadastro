@@ -1,9 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class Alteration extends Component {
-    render() {
-        return (
-            <p>Hello Darkness 2</p>
-        )
-    }
+export default function Alteration(props) {
+    const { handleChange } = props
+
+    return (
+        <div className={(props.type === 'alteracao') ? null : 'hide'}>
+            <h1>Alteração</h1>
+        </div>
+    )
 }

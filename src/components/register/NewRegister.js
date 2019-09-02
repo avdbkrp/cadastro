@@ -7,7 +7,7 @@ import fetchJsonp from 'fetch-jsonp'
 
 export default class NewRegister extends Component {
   state = {
-    type: 'Cadastro',
+    type: 'cadastro',
     cnpj: '',
     cpf: '',
     codigoCliente: '',
@@ -27,12 +27,14 @@ export default class NewRegister extends Component {
 
   handleChange = (e) => {
     if (e.target.id === 'cnpj' && e.target.value.length === 14) {
-      const { value } = e.target
-      let dadosCnpj = this.getCnpj(value)
-      console.log(dadosCnpj)
-    }
-    
-    if (e.target.id === 'rota') {
+      this.setState({ [e.target.id]: e.target.value })
+      let dadosCnpj = this.getCnpj(e.target.value)
+      dadosCnpj.then((res) => {
+        this.setState({
+          nomeFantasia: res.fantasia
+        })
+      })
+    } else if (e.target.id === 'rota') {
         let options = e.target.options;
         let value = []
         for (let i = 0, l = options.length; i < l; i++) {
@@ -40,57 +42,21 @@ export default class NewRegister extends Component {
             value.push(options[i].value)
           }
         }
-      
-      this.setState({
-        [e.target.id]: value
-      })
+      this.setState({ [e.target.id]: value })
     } else {
-      this.setState({
-        [e.target.id]: e.target.value
-      })
+      this.setState({ [e.target.id]: e.target.value })
     }
   }
 
   getCnpj = (cnpj) => {
-    fetchJsonp('https://www.receitaws.com.br/v1/cnpj/' + cnpj)
+    return fetchJsonp('https://www.receitaws.com.br/v1/cnpj/' + cnpj)
       .then((response) => {
         return response.json()
-      }).then((dadosCnpj) => {
-        console.log(dadosCnpj)
       })
   }
-  
-  form = <Register handleChange={this.handleChange} />
 
   handleClick = (e) => {
-    switch (e.target.id) {
-      case 'cadastro':
-        this.setState({
-          type: 'Cadastro'
-        })
-        this.form = <Register handleChange={this.handleChange} />
-        break    
-      case 'alteracao':
-        this.setState({
-          type: 'Alteração'
-        })
-        this.form = <Alteration handleChange={this.handleChange} />
-        break      
-      case 'substituicao':
-        this.setState({
-          type: 'Substituição'
-        })
-        this.form = <Substituition handleChange={this.handleChange} />
-        break       
-      case 'cpf':
-        this.setState({
-          type: 'Cadastro de CPF'
-        })
-        this.form = <RegisterCPF handleChange={this.handleChange} />
-        break      
-      default:
-        return null
-    }
+    this.setState({ type: e.target.id })
   }
 
   handleSubmit = (e) => {
@@ -127,7 +93,10 @@ export default class NewRegister extends Component {
                 <span>Cadastro CPF</span>
               </label>
             </p>
-            {this.form}
+            <Register handleChange={this.handleChange} {...this.state} />
+            <Alteration handleChange={this.handleChange} {...this.state} />
+            <Substituition handleChange={this.handleChange} {...this.state} />
+            <RegisterCPF handleChange={this.handleChange} {...this.state} />
             <div className="center">
               <button className="btn waves-effect waves-light" type="submit" name="action">Enviar</button>
           </div>

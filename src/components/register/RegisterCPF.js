@@ -1,9 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class RegisterCPF extends Component {
-    render() {
-        return (
-            <p>Hello Darkness 4</p>
-        )
-    }
+export default function RegisterCPF(props) {
+  const { handleChange } = props
+
+  return (
+    <div className={(props.type === 'cpf') ? null : 'hide'}>
+      <h1>CPF</h1>
+    </div>
+  )
 }

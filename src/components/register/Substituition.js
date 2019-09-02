@@ -1,9 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class Substituition extends Component {
-    render() {
-        return (
-            <p>Hello Darkness 3</p>
-        )
-    }
+export default function Substituition(props) {
+    const { handleChange } = props
+
+    return (
+        <div className={(props.type === 'substituicao') ? null : 'hide'}>
+            <h1>Substituição</h1>
+        </div>
+    )
 }
