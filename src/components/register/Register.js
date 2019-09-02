@@ -10,6 +10,10 @@ export default function Register(props) {
           <input type="text" id="cnpj" onChange={handleChange} value={props.cnpj} />
         </div>
         <div className="input-field">
+          <label htmlFor="razaoSocial">Razão Social</label>
+          <input type="text" id="razaoSocial" onChange={handleChange} value={props.razaoSocial} />
+        </div>
+        <div className="input-field">
           <label htmlFor="nomeFantasia">Nome Fantasia</label>
           <input type="text" id="nomeFantasia" onChange={handleChange} value={props.nomeFantasia} />
         </div>
@@ -47,7 +51,31 @@ export default function Register(props) {
         </div>
         <div className="input-field">
           <label htmlFor="email">e-mail</label>
-          <input type="text" id="email" onChange={handleChange} value={props.email} />
+          <input type="email" id="email" onChange={handleChange} value={props.email} />
+        </div>
+        <div className="input-field">
+          <label htmlFor="endereco">Endereço</label>
+          <input type="text" id="endereco" onChange={handleChange} value={props.endereco} />
+        </div>
+        <div className="input-field">
+          <label htmlFor="cep">CEP</label>
+          <input type="text" id="cep" onChange={handleChange} value={props.cep} />
+        </div>
+        <div className="input-field">
+          <label htmlFor="complemento">Complemento</label>
+          <input type="text" id="complemento" onChange={handleChange} value={props.complemento} />
+        </div>
+        <div className="input-field">
+          <label htmlFor="numeroEndereco">Número</label>
+          <input type="text" id="numeroEndereco" onChange={handleChange} value={props.numeroEndereco} />
+        </div>
+        <div className="input-field">
+          <label htmlFor="bairro">Bairro</label>
+          <input type="text" id="bairro" onChange={handleChange} value={props.bairro} />
+        </div>
+        <div className="input-field">
+          <label htmlFor="cidade">Município</label>
+          <input type="text" id="cidade" onChange={handleChange} value={props.cidade} />
         </div>
     </div>
   )

@@ -11,6 +11,7 @@ export default class NewRegister extends Component {
     cnpj: '',
     cpf: '',
     codigoCliente: '',
+    razaoSocial: '',
     nomeFantasia: '',
     rota: [],
     canal: '',
@@ -20,6 +21,7 @@ export default class NewRegister extends Component {
     cep: '',
     endereco: '',
     numeroEndereco: '',
+    complemento: '',
     bairro: '',
     cidade: '',
     detalhes: ''
@@ -31,7 +33,16 @@ export default class NewRegister extends Component {
       let dadosCnpj = this.getCnpj(e.target.value)
       dadosCnpj.then((res) => {
         this.setState({
-          nomeFantasia: res.fantasia
+          razaoSocial: res.nome,
+          nomeFantasia: res.fantasia,
+          telefone: res.telefone,
+          email: res.email,
+          endereco: res.logradouro,
+          complemento: res.complemento,
+          numeroEndereco: res.numero,
+          bairro: res.bairro,
+          cidade: res.municipio,
+          cep: res.cep
         })
       })
     } else if (e.target.id === 'rota') {
@@ -99,7 +110,7 @@ export default class NewRegister extends Component {
             <RegisterCPF handleChange={this.handleChange} {...this.state} />
             <div className="center">
               <button className="btn waves-effect waves-light" type="submit" name="action">Enviar</button>
-          </div>
+            </div>
         </form>
       </div>
     )
