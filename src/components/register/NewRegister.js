@@ -3,6 +3,7 @@ import Register from './Register'
 import Alteration from './Alteration'
 import Substituition from './Substituition'
 import RegisterCPF from './RegisterCPF'
+import fetchJsonp from 'fetch-jsonp'
 
 export default class NewRegister extends Component {
   state = {
@@ -25,12 +26,18 @@ export default class NewRegister extends Component {
   }
 
   handleChange = (e) => {
+    if (e.target.id === 'cnpj' && e.target.value.length === 14) {
+      const { value } = e.target
+      let dadosCnpj = this.getCnpj(value)
+      console.log(dadosCnpj)
+    }
+    
     if (e.target.id === 'rota') {
-        var options = e.target.options;
-        var value = [];
-        for (var i = 0, l = options.length; i < l; i++) {
-          if (options[i].selected) {
-            value.push(options[i].value);
+        let options = e.target.options;
+        let value = []
+        for (let i = 0, l = options.length; i < l; i++) {
+          if (options[i].selected && options[i].value !== '') {
+            value.push(options[i].value)
           }
         }
       
@@ -42,6 +49,15 @@ export default class NewRegister extends Component {
         [e.target.id]: e.target.value
       })
     }
+  }
+
+  getCnpj = (cnpj) => {
+    fetchJsonp('https://www.receitaws.com.br/v1/cnpj/' + cnpj)
+      .then((response) => {
+        return response.json()
+      }).then((dadosCnpj) => {
+        console.log(dadosCnpj)
+      })
   }
   
   form = <Register handleChange={this.handleChange} />
