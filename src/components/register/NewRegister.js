@@ -24,7 +24,9 @@ export default class NewRegister extends Component {
     complemento: '',
     bairro: '',
     cidade: '',
-    detalhes: ''
+    detalhes: '',
+    situacao: null,
+    errorMessage: null
   }
 
   handleChange = (e) => {
@@ -32,6 +34,13 @@ export default class NewRegister extends Component {
       this.setState({ [e.target.id]: e.target.value })
       let dadosCnpj = this.getCnpj(e.target.value)
       dadosCnpj.then((res) => {
+        if (res.status === 'ERROR') {
+          return this.setState({ errorMessage: res.message })
+        } else if (res.situacao !== 'ATIVA') {
+          this.setState({ errorMessage: res.situacao })
+        } else {
+          this.setState({ errorMessage: null })
+        }
         this.setState({
           razaoSocial: res.nome,
           nomeFantasia: res.fantasia,
@@ -42,7 +51,8 @@ export default class NewRegister extends Component {
           numeroEndereco: res.numero,
           bairro: res.bairro,
           cidade: res.municipio,
-          cep: res.cep
+          cep: res.cep,
+          situacao: res.situacao
         })
       })
     } else if (e.target.id === 'rota') {
@@ -109,7 +119,12 @@ export default class NewRegister extends Component {
             <Substituition handleChange={this.handleChange} {...this.state} />
             <RegisterCPF handleChange={this.handleChange} {...this.state} />
             <div className="center">
-              <button className="btn waves-effect waves-light" type="submit" name="action">Enviar</button>
+              <button
+                className={(this.state.situacao === 'ATIVA' && !this.state.errorMessage) ? 'btn waves-effect waves-light' : 'btn waves-effect waves-light disabled'}
+                type="submit"
+                name="action">
+                Enviar
+              </button>
             </div>
         </form>
       </div>

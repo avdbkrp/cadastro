@@ -9,6 +9,7 @@ export default function Register(props) {
           <label htmlFor="cnpj">CNPJ</label>
           <input type="text" id="cnpj" onChange={handleChange} value={props.cnpj} />
         </div>
+        <div className="red-text">{(props.errorMessage ? props.errorMessage : null)}</div>
         <div className="input-field">
           <label htmlFor="razaoSocial">Razão Social</label>
           <input type="text" id="razaoSocial" onChange={handleChange} value={props.razaoSocial} />
@@ -19,7 +20,7 @@ export default function Register(props) {
         </div>
         <label htmlFor="rota">Rota</label>
         <div className="input-field col s12">
-          <select id="rota" className="browser-default" multiple defaultValue={[""]}>
+          <select id="rota" className="browser-default" multiple defaultValue={[""]} onChange={handleChange}>
             <option value="" disabled>Selecione a rota</option>
             <option>Segunda</option>
             <option>Terça</option>
@@ -31,7 +32,7 @@ export default function Register(props) {
         </div>
         <label htmlFor="canal">Canal</label>
         <div className="input-field col s12">
-          <select id="canal" className="browser-default" defaultValue="">
+          <select id="canal" className="browser-default" defaultValue="" onChange={handleChange}>
             <option value="" disabled>Selecione o canal</option>
             <option>Bar A/B</option>
             <option>Bar C/D</option>
