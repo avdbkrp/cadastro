@@ -1,7 +1,7 @@
 import React from 'react'
 import { Textarea, TextInput, Select } from 'react-materialize'
 
-export default function Register(props) {
+export default function Replace(props) {
   const { handleChange } = props
 
   return (
@@ -21,6 +21,14 @@ export default function Register(props) {
       <div className="red-text">{(props.errorMessage ? props.errorMessage : null)}</div>
 
       <TextInput
+        label="Código do Cliente"
+        id="codigoCliente"
+        onChange={handleChange}
+        value={props.codigoCliente}
+        required
+      />
+
+      <TextInput
         label="Razão Social"
         id="razaoSocial"
         onChange={handleChange}
@@ -35,7 +43,7 @@ export default function Register(props) {
         required
       />
 
-      <Select label="Selecione a rota" id="rota" multiple defaultValue={[""]} onChange={handleChange} required>
+      <Select label="Selecione a rota" id="rota" multiple defaultValue={[""]} onChange={handleChange}>
         <option>Segunda</option>
         <option>Terça</option>
         <option>Quarta</option>
@@ -44,7 +52,7 @@ export default function Register(props) {
         <option>Sábado</option>
       </Select>
 
-      <Select label="Selecione o canal" id="canal" defaultValue={""} onChange={handleChange} required>
+      <Select label="Selecione o canal" id="canal" defaultValue={""} onChange={handleChange}>
         <option value="" disabled>Selecione o canal</option>
         <option>Bar A/B</option>
         <option>Bar C/D</option>

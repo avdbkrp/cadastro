@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import Register from './Register'
-import Alteration from './Alteration'
-import Substituition from './Substituition'
-import RegisterCPF from './RegisterCPF'
+import Change from "./Change"
+import Replace from "./Replace"
+import CpfRegister from "./CpfRegister"
 import fetchJsonp from 'fetch-jsonp'
+import { Button } from 'react-materialize'
 
 export default class NewRegister extends Component {
   state = {
@@ -25,8 +26,8 @@ export default class NewRegister extends Component {
     bairro: '',
     cidade: '',
     detalhes: '',
-    situacao: null,
-    errorMessage: null
+    situacao: '',
+    errorMessage: ''
   }
 
   handleChange = (e) => {
@@ -69,8 +70,8 @@ export default class NewRegister extends Component {
     }
   }
 
-  getCnpj = (cnpj) => {
-    return fetchJsonp('https://www.receitaws.com.br/v1/cnpj/' + cnpj)
+  getCnpj = async (cnpj) => {
+    return await fetchJsonp('https://www.receitaws.com.br/v1/cnpj/' + cnpj)
       .then((response) => {
         return response.json()
       })
@@ -114,17 +115,17 @@ export default class NewRegister extends Component {
                 <span>Cadastro CPF</span>
               </label>
             </p>
-            <Register handleChange={this.handleChange} {...this.state} />
-            <Alteration handleChange={this.handleChange} {...this.state} />
-            <Substituition handleChange={this.handleChange} {...this.state} />
-            <RegisterCPF handleChange={this.handleChange} {...this.state} />
+            { this.state.type === 'cadastro' && <Register handleChange={this.handleChange} {...this.state} /> }
+            { this.state.type === 'alteracao' && <Change handleChange={this.handleChange} {...this.state} /> }
+            { this.state.type === 'substituicao' && <Replace handleChange={this.handleChange} {...this.state} /> }
+            { this.state.type === 'cpf' && <CpfRegister handleChange={this.handleChange} {...this.state} /> }
             <div className="center">
-              <button
+              <Button
                 className={(this.state.situacao === 'ATIVA' && !this.state.errorMessage) ? 'btn waves-effect waves-light' : 'btn waves-effect waves-light disabled'}
                 type="submit"
                 name="action">
                 Enviar
-              </button>
+              </Button>
             </div>
         </form>
       </div>
