@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import Register from './Register'
-import Alteration from './Alteration'
-import Substituition from './Substituition'
-import RegisterCPF from './RegisterCPF'
+import Change from "./Change"
+import Replace from "./Replace"
+import CpfRegister from "./CpfRegister"
 import fetchJsonp from 'fetch-jsonp'
 
 export default class NewRegister extends Component {
@@ -25,8 +25,8 @@ export default class NewRegister extends Component {
     bairro: '',
     cidade: '',
     detalhes: '',
-    situacao: null,
-    errorMessage: null
+    situacao: '',
+    errorMessage: ''
   }
 
   handleChange = (e) => {
@@ -69,8 +69,8 @@ export default class NewRegister extends Component {
     }
   }
 
-  getCnpj = (cnpj) => {
-    return fetchJsonp('https://www.receitaws.com.br/v1/cnpj/' + cnpj)
+  getCnpj = async (cnpj) => {
+    return await fetchJsonp('https://www.receitaws.com.br/v1/cnpj/' + cnpj)
       .then((response) => {
         return response.json()
       })
@@ -90,42 +90,42 @@ export default class NewRegister extends Component {
       <div className="container">
         <h4 className="center">Novo Cadastro</h4>
         <form onSubmit={this.handleSubmit}>
-            <p>
-              <label>
-                <input id="cadastro" name="group1" type="radio" defaultChecked onClick={this.handleClick}/>
-                <span>Cadastro</span>
-              </label>
-            </p>
-            <p>
-              <label>
-                <input id="alteracao" name="group1" type="radio" onClick={this.handleClick}/>
-                <span>Alteração</span>
-              </label>
-            </p>
-            <p>
-              <label>
-                <input id="substituicao" name="group1" type="radio" onClick={this.handleClick}/>
-                <span>Substituição</span>
-              </label>
-            </p>
-            <p>
-              <label>
-                <input id="cpf" name="group1" type="radio" onClick={this.handleClick}/>
-                <span>Cadastro CPF</span>
-              </label>
-            </p>
-            <Register handleChange={this.handleChange} {...this.state} />
-            <Alteration handleChange={this.handleChange} {...this.state} />
-            <Substituition handleChange={this.handleChange} {...this.state} />
-            <RegisterCPF handleChange={this.handleChange} {...this.state} />
-            <div className="center">
-              <button
-                className={(this.state.situacao === 'ATIVA' && !this.state.errorMessage) ? 'btn waves-effect waves-light' : 'btn waves-effect waves-light disabled'}
-                type="submit"
-                name="action">
-                Enviar
-              </button>
-            </div>
+          <p>
+            <label>
+              <input id="cadastro" name="group1" type="radio" defaultChecked onClick={this.handleClick}/>
+              <span>Cadastro</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input id="alteracao" name="group1" type="radio" onClick={this.handleClick}/>
+              <span>Alteração</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input id="substituicao" name="group1" type="radio" onClick={this.handleClick}/>
+              <span>Substituição</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input id="cpf" name="group1" type="radio" onClick={this.handleClick}/>
+              <span>Cadastro CPF</span>
+            </label>
+          </p>
+          { this.state.type === 'cadastro' && <Register handleChange={this.handleChange} {...this.state} /> }
+          { this.state.type === 'alteracao' && <Change handleChange={this.handleChange} {...this.state} /> }
+          { this.state.type === 'substituicao' && <Replace handleChange={this.handleChange} {...this.state} /> }
+          { this.state.type === 'cpf' && <CpfRegister handleChange={this.handleChange} {...this.state} /> }
+          <div className="center">
+            <button
+              className={(this.state.situacao === 'ATIVA' && !this.state.errorMessage) ? 'btn waves-effect waves-light' : 'btn waves-effect waves-light disabled'}
+              type="submit"
+              name="action">
+              Enviar
+            </button>
+          </div>
         </form>
       </div>
     )

@@ -1,30 +1,25 @@
 import React from 'react'
 import { Textarea, TextInput, Select } from 'react-materialize'
 
-export default function Register(props) {
+export default function CpfRegister(props) {
   const { handleChange } = props
 
   return (
     <div>
       <TextInput
-        label="CNPJ"
-        id="cnpj"
+        label="CPF"
+        id="cpf"
         onChange={handleChange}
-        value={props.cnpj}
+        value={props.cpf}
         required
-        minLength="14"
-        maxLength="14"
-        error="CNPJ Inválido"
-        data-length={14}
-        validate
       />
-      <div className="red-text">{(props.errorMessage ? props.errorMessage : null)}</div>
 
       <TextInput
-        label="Razão Social"
-        id="razaoSocial"
+        label="Nome"
+        id="codigoCliente"
         onChange={handleChange}
-        value={props.razaoSocial}
+        value={props.codigoCliente}
+        required
       />
 
       <TextInput
@@ -82,6 +77,7 @@ export default function Register(props) {
         id="endereco"
         onChange={handleChange}
         value={props.endereco}
+        required
       />
 
       <TextInput
@@ -89,6 +85,7 @@ export default function Register(props) {
         id="cep"
         onChange={handleChange}
         value={props.cep}
+        required
       />
 
       <TextInput
@@ -103,6 +100,7 @@ export default function Register(props) {
         id="numeroEndereco"
         onChange={handleChange}
         value={props.numeroEndereco}
+        required
       />
 
       <TextInput
@@ -110,6 +108,7 @@ export default function Register(props) {
         id="bairro"
         onChange={handleChange}
         value={props.bairro}
+        required
       />
 
       <TextInput
@@ -117,6 +116,7 @@ export default function Register(props) {
         id="cidade"
         onChange={handleChange}
         value={props.cidade}
+        required
       />
 
       <Textarea
