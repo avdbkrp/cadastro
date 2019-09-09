@@ -1,6 +1,6 @@
 import React from 'react'
 import ButtonRegister from './ButtonRegister'
-import { Card, Col, Pagination, Row } from "react-materialize";
+import { Card, Col, Row } from "react-materialize";
 
 export default function Main() {
   return (
