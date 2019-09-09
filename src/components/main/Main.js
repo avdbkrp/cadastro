@@ -6,7 +6,7 @@ export default function Main() {
   return (
     <div>
       <Row>
-        <Col m={4} s={12}>
+        <Col l={4} m={6} s={12}>
           <Card
             className="grey lighten-5"
             title="Loja 01 - Cadastro">
@@ -18,7 +18,7 @@ export default function Main() {
             <span className="grey-text text-darken-1 right">26/04/2019 11:59</span>
           </Card>
         </Col>
-        <Col m={4} s={12}>
+        <Col l={4} m={6} s={12}>
           <Card
             className="grey lighten-5"
             title="Loja 02 - Alteração">
@@ -30,7 +30,7 @@ export default function Main() {
             <span className="grey-text text-darken-1 right">25/04/2019 10:28</span>
           </Card>
         </Col>
-        <Col m={4} s={12}>
+        <Col l={4} m={6} s={12}>
           <Card
             className="grey lighten-5"
             title="Loja 03 - CPF">
@@ -42,7 +42,7 @@ export default function Main() {
             <span className="grey-text text-darken-1 right">23/04/2019 15:16</span>
           </Card>
         </Col>
-        <Col m={4} s={12}>
+        <Col l={4} m={6} s={12}>
           <Card
             className="grey lighten-5"
             title="Loja 04 - Cadastro">
@@ -54,7 +54,7 @@ export default function Main() {
             <span className="grey-text text-darken-1 right">31/03/2019 08:30</span>
           </Card>
         </Col>
-        <Col m={4} s={12}>
+        <Col l={4} m={6} s={12}>
           <Card
             className="green lighten-5"
             title="Loja 05 - Cadastro">
@@ -66,7 +66,7 @@ export default function Main() {
             <span className="green-text text-darken-1 right">Cadastrado - 19/03/2019 12:30</span>
           </Card>
         </Col>
-        <Col m={4} s={12}>
+        <Col l={4} m={6} s={12}>
           <Card
             className="green lighten-5"
             title="Loja 06 - Cadastro">
