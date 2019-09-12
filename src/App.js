@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Main from './components/main/Main'
 import Navbar from './components/main/Navbar'
 import NewRegister  from './components/register/NewRegister'
-import Cards from './components/main/Cards'
+import RegisterDetails from './components/main/RegisterDetails'
 
 function App() {
   return (
@@ -12,8 +12,8 @@ function App() {
         <Navbar />
         <Switch>
           <Route exact path='/' component={Main} />
-          <Route path="/register" component={NewRegister} />
-          <Route path="/new" component={Cards} />
+          <Route path="/novo" component={NewRegister} />
+          <Route path="/cadastro/:id" component={RegisterDetails} />
         </Switch>
       </div>
     </BrowserRouter>
